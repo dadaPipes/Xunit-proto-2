@@ -1,0 +1,17 @@
+### YamlMime:ManagedReference
+
+- name: Getting started
+  href: getting-started.md
+  items:
+    - name: Download the .NET SDK
+      href: download-net-sdk.md
+    - name: Install the .NET SDK templates
+      href: install-the-NET-SDK-templates.md
+    - name: Create the unit test project
+      href: create-unit-test-project.md
+    - name: Write your first tests
+      href: write-your-first-tests.md
+    - name: Write your first theory
+      href: write-your-first-theory.md
+    - name: Running tests
+      href: running-tests.md

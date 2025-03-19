@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>About This Project | xunit </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="About This Project | xunit ">
+      
+      
+      <link rel="icon" href="../../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../../index.html">
+            <img id="logo" class="svg" src="../../../../../logo.svg" alt="xunit">
+            xunit
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="about-this-project">About This Project</h1>
+
+<p>This project contains the xUnit.net assertion library source code, intended to be used as a Git submodule (or via the <code>xunit.v3.assert.source</code> NuGet package).</p>
+<p>Code here is built with <code>netstandard2.0</code> and <code>net8.0</code> within xUnit.net v3. At a minimum the code needs to be able to support <code>net472</code> and later for .NET Framework, and <code>net8.0</code> and later for .NET. The minimum (and default) C# version is 7.3, unless specific features require targeting later compilers. Additionally, we compile with the full Roslyn analyzer set enabled when building for v3, so you will frequently see conditional code and/or rules being disabled as appropriate. These constraints are supported by the <a href="#suggested-contribution-workflow">suggested contribution workflow</a>, which aims to make it easy to know when you've used unavailable features.</p>
+<p>This code includes assertions for immutable collections as well as the <code>Span</code> and <code>Memory</code> family of types. If you experience compiler errors related to these types, you may need to add references to the following NuGet packages:</p>
+<pre><code class="lang-xml">&lt;ItemGroup&gt;
+    &lt;PackageReference Include=&quot;System.Collections.Immutable&quot; Version=&quot;8.0.0&quot; /&gt;
+    &lt;PackageReference Include=&quot;System.Memory&quot; Version=&quot;4.6.0&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+<blockquote>
+<p><em><strong>Note:</strong> If your PR requires a newer target framework or a newer C# language to build, please start a discussion in the related issue(s) before starting any work. PRs that arbitrarily use newer target frameworks and/or newer C# language features will need to be fixed; you may be asked to fix them, or we may fix them for you, or we may decline the PR (at our discretion).</em></p>
+</blockquote>
+<p>To open an issue for this project, please visit the <a href="https://github.com/xunit/xunit/issues">core xUnit.net project issue tracker</a>.</p>
+<h2 id="annotations">Annotations</h2>
+<p>Whether you are using this repository via Git submodule or via the <a href="https://www.nuget.org/packages/xunit.assert.source">source-based NuGet package</a>, the following pre-processor directives can be used to influence the code contained in this repository:</p>
+<h3 id="xunit_nullable-min-c-90"><code>XUNIT_NULLABLE</code> (min: C# 9.0)</h3>
+<p>Projects that consume this repository as source, which wish to use nullable reference type annotations should define the <code>XUNIT_NULLABLE</code> compilation symbol to opt-in to the relevant nullability analysis annotations on method signatures.</p>
+<h3 id="xunit_visibility_internal"><code>XUNIT_VISIBILITY_INTERNAL</code></h3>
+<p>By default, the <code>Assert</code> class has <code>public</code> visibility. This is appropriate for the default usage (as a shipped library). If your consumption of <code>Assert</code> via source is intended to be local to a single library, you should define <code>XUNIT_VISIBILITY_INTERNAL</code> to move the visibility of the <code>Assert</code> class to <code>internal</code>.</p>
+<h2 id="suggested-contribution-workflow">Suggested Contribution Workflow</h2>
+<p>The pull request workflow for the assertion library is more complex than a typical single-repository project. The source code for the assertions live in this repository, and the source code for the unit tests live in the main repository: <a href="https://github.com/xunit/xunit"><code>xunit/xunit</code></a>.</p>
+<p>This workflow makes it easier to work in your branches as well as ensuring that your PR build has a higher chance of succeeding.</p>
+<p>You will need a fork of both <code>xunit/assert.xunit</code> (this repository) and <code>xunit/xunit</code> (the main repository for xUnit.net). You will also need a local clone of <code>xunit/xunit</code>, which is where you will be doing all your work. <em>You do not need a clone of your <code>xunit/assert.xunit</code> fork, because we use Git submodules to bring both repositories together into a single folder.</em></p>
+<h3 id="before-you-start-working">Before you start working</h3>
+<ol>
+<li><p>In a command prompt, from the root of the repository, run:</p>
+<ul>
+<li><code>git submodule update --init</code> to ensure the Git submodule in <code>/src/xunit.v3.assert/Asserts</code> is initialized.</li>
+<li><code>git switch main</code></li>
+<li><code>git pull origin --ff-only</code> to ensure that <code>main</code> is up to date.</li>
+<li><code>git remote add fork https://github.com/yourusername/xunit</code> to point to your fork (update the URL as appropriate).</li>
+<li><code>git fetch fork</code> to ensure that your <code>fork</code> remote is working.</li>
+<li><code>git switch -c my-branch-name</code> to create a new branch for <code>xunit/xunit</code>.</li>
+</ul>
+<p><em>Replace <code>my-branch-name</code> with whatever branch name you want. We suggest you put the general feature and the <code>xunit/xunit</code> issue number into the name, to help you track the work if you're planning to help with multiple issues. An example branch name might be something like <code>add-support-for-IAsyncEnumerable-2367</code>.</em></p>
+</li>
+<li><p>In a command prompt, from <code>/src/xunit.v3.assert/Asserts</code>, run:</p>
+<ul>
+<li><code>git switch main</code></li>
+<li><code>git pull origin --ff-only</code> to ensure that <code>main</code> is up to date.</li>
+<li><code>git remote add fork https://github.com/yourusername/assert.xunit</code> to point to your fork (update the URL as appropriate).</li>
+<li><code>git fetch fork</code> to ensure that your <code>fork</code> remote is working.</li>
+<li><code>git switch -c my-branch-name</code> to create a new branch for <code>xunit/assert.xunit</code>.</li>
+</ul>
+<p><em>You may use the same branch name that you used above, as these branches are in two different repositories; identical names won't conflict, and may help you keep your work straight if you are working on multiple issues.</em></p>
+</li>
+</ol>
+<h3 id="create-the-code-and-test">Create the code and test</h3>
+<p>Open the solution in Visual Studio (or your preferred editor/IDE), and create your changes. The assertion changes will live in <code>/src/xunit.v3.assert/Asserts</code> and the tests will live in <code>/src/xunit.v3.assert.tests/Asserts</code>. In Visual Studio, the two projects you'll be working in are named <code>xunit.v3.assert</code> and <code>xunit.v3.assert.tests</code>. (You will see several <code>xunit.v3.assert.*</code> projects which ensure that the code you're writing correctly compiles in all the supported scenarios.)</p>
+<p>When the changes are complete, you can run <code>./build</code> from the root of the repository to run the full test suite that would normally be run by a PR.</p>
+<h3 id="when-youre-ready-to-submit-the-pull-requests">When you're ready to submit the pull requests</h3>
+<ol>
+<li><p>In a command prompt, from <code>/src/xunit.v3.assert/Asserts</code>, run:</p>
+<ul>
+<li><code>git add -A</code></li>
+<li><code>git commit</code></li>
+<li><code>git push fork my-branch-name</code></li>
+</ul>
+<p><em>This pushes the branch up to your fork for you to create the PR for <code>xunit/assert.xunit</code>. The push message will give you a link (something like <code>https://github.com/yourusername/assert.xunit/pull/new/my-new-branch</code>) to start the PR process. You may do that now. We do this folder first, because we need for the source to be pushed to get a commit reference for the next step.</em></p>
+</li>
+<li><p>In a command prompt, from the root of the repository, run the same three commands:</p>
+<ul>
+<li><code>git add -A</code></li>
+<li><code>git commit</code></li>
+<li><code>git push fork my-branch-name</code></li>
+</ul>
+<p><em>Just like the previous steps did, this pushes up your branch for the PR for <code>xunit/xunit</code>. Only do this after you have pushed your PR-ready changes for <code>xunit/assert.xunit</code>. You may now start the PR process for <code>xunit/xunit</code> as well, and it will include the reference to the new assertion code that you've already pushed.</em></p>
+</li>
+</ol>
+<p>A maintainer will review and merge your PRs, and automatically create equivalent updates to the <code>v2</code> branch so that your assertion changes will be made available for any potential future xUnit.net v2.x releases.</p>
+<p><em>Please remember that all PRs require associated unit tests. You may be asked to write the tests if you create a PR without them. If you're not sure how to test the code in question, please feel free to open the PR and then mention that in the PR description, and someone will help you with this.</em></p>
+<h1 id="about-xunitnet">About xUnit.net</h1>
+<p><a href="https://dotnetfoundation.org/projects/project-detail/xunit"><img align="right" width="100px" src="https://raw.githubusercontent.com/xunit/media/main/dotnet-foundation.svg"></a></p>
+<p>xUnit.net is a free, open source, community-focused unit testing tool for the .NET Framework. Written by the original inventor of NUnit v2, xUnit.net is the latest technology for unit testing C#, F#, VB.NET and other .NET languages. xUnit.net works with ReSharper, CodeRush, TestDriven.NET and Xamarin. It is part of the <a href="https://www.dotnetfoundation.org/">.NET Foundation</a>, and operates under their <a href="http://www.dotnetfoundation.org/code-of-conduct">code of conduct</a>. It is licensed under <a href="https://opensource.org/licenses/Apache-2.0">Apache 2</a> (an OSI approved license).</p>
+<p>For project documentation, please visit the <a href="https://xunit.net/">xUnit.net project home</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

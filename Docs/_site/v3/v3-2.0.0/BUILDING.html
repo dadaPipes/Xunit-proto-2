@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Building xUnit.net | xunit </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Building xUnit.net | xunit ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/xunit/xunit/blob/229879b7653ec0573f36ca4759ccfc915be11a21/BUILDING.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="xunit">
+            xunit
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="building-xunitnet">Building xUnit.net</h1>
+
+<p>The primary build system for xUnit.net is done via command line, and officially supports Linux and Windows. Users
+running macOS can generally follow the Linux instructions (while installing the macOS equivalents of the dependencies).</p>
+<h1 id="pre-requisites">Pre-Requisites</h1>
+<p>You will need the following software installed (regardless of OS):</p>
+<ul>
+<li><a href="https://dotnet.microsoft.com/download/dotnet/9.0">.NET SDK 9.0</a></li>
+<li><a href="https://dotnet.microsoft.com/download/dotnet/8.0">.NET Runtime 8.0</a></li>
+<li><a href="https://git-scm.com/downloads">git</a></li>
+</ul>
+<h2 id="linux-pre-requisites">Linux Pre-Requisites</h2>
+<p>Linux users will additionally need:</p>
+<ul>
+<li><a href="https://www.mono-project.com/download/stable/">Mono</a> 6.12+ w/ MSBuild 16.6+</li>
+<li><a href="https://www.gnu.org/software/bash/">bash</a> for the build script (does not need to be your default shell)</li>
+</ul>
+<h2 id="windows-pre-requisites">Windows Pre-Requisites</h2>
+<p>Windows users will additionally need:</p>
+<ul>
+<li>.NET Framework 4.8.1 or later (part of the Windows OS)</li>
+<li>PowerShell (or <a href="https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows">PowerShell Core</a>)</li>
+</ul>
+<p>Ensure that you have configured PowerShell to be able to run local unsigned scripts (either by running
+<code>Set-ExecutionPolicy RemoteSigned</code> from within PowerShell, or by launching PowerShell with the
+<code>-ExecutionPolicy RemoteSigned</code> command line switch).</p>
+<h1 id="command-line-build">Command-Line Build</h1>
+<ol>
+<li><p><strong>Linux users:</strong> Open a terminal to your favorite shell.</p>
+<p><strong>Windows users:</strong> Open PowerShell (or PowerShell Core).</p>
+</li>
+<li><p>From the root folder of the source repo, this command will build the code and run all tests:</p>
+<p><code>./build</code></p>
+<p>To build a specific target (or multiple targets):</p>
+<p><code>./build [target [target...]]</code></p>
+<p>The common targets (case-insensitive) include:</p>
+<ul>
+<li><code>Restore</code>: Perform package restore</li>
+<li><code>Build</code>: Build the source</li>
+<li><code>Test</code>: Run all unit tests</li>
+<li><code>TestCore</code>: Run all unit tests (.NET Core)</li>
+<li><code>TestFx</code>: Run all unit tests (.NET Framework)</li>
+<li><code>Packages</code>: Create NuGet packages</li>
+</ul>
+<p>You can get a list of options:</p>
+<p><code>./build --help</code></p>
+</li>
+</ol>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/xunit/xunit/blob/229879b7653ec0573f36ca4759ccfc915be11a21/BUILDING.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

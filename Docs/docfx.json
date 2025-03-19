@@ -4,13 +4,32 @@
     {
       "src": [
         {
-          "src": "../src",
-          "files": [
-            "**/*.csproj"
-          ]
+          "src": "../v3/v3-2.0.0/src/xunit.v3.assert",
+          "files": [ "**/*.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ]
+        },
+        {
+          "src": "../v3/v3-2.0.0/src/xunit.v3.common",
+          "files": [ "**/*.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ]
+        },
+        {
+          "src": "../v3/v3-2.0.0/src/xunit.v3.core",
+          "files": [ "**/*.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ]
+        },
+        {
+          "src": "../v3/v3-2.0.0/src/xunit.v3.runner.common",
+          "files": [ "**/*.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ]
+        },
+        {
+          "src": "../v3/v3-2.0.0/src/xunit.v3.runner.utility",
+          "files": [ "**/*.csproj" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ]
         }
       ],
-      "dest": "api"
+      "dest": "v3/2.0.0"
     }
   ],
   "build": {

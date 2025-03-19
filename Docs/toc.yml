@@ -1,4 +1,4 @@
 - name: Docs
   href: docs/
-- name: API
-  href: api/
+- name: v3
+  href: v3/2.0.0/
